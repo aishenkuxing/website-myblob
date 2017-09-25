@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cn.website.myblob.bean.BlobLinkme;
 import com.cn.website.myblob.dao.MyBlobDao;
-import com.cn.website.weixinpay.bean.BlobLinkme;
 
 @Service("myBlobServiceImpl")
 @Transactional(value ="txManager")

@@ -5,6 +5,7 @@ import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cn.website.common.entity.MessageNotice;
 import com.cn.website.common.entity.MessageObject;
 import com.cn.website.common.util.DateUtil;
+import com.cn.website.myblob.bean.BlobLinkme;
 import com.cn.website.myblob.service.MyBlobService;
-import com.cn.website.weixinpay.bean.BlobLinkme;
 
 
 @RestController
@@ -28,10 +29,10 @@ public class MyBlobApiController {
 	 * @return
 	 */
 	@RequestMapping(value = "saveLink",method = RequestMethod.POST)
-	private MessageNotice saveLink(BlobLinkme blobLinkme){
+	private MessageNotice saveLink(@RequestBody BlobLinkme blobLinkme){
 		MessageObject<Long> mnt = new MessageObject<Long>();
 		mnt.setCode(1);
-		blobLinkme.setAddTime(DateUtil.getCurrentDate());
+		blobLinkme.setAddTime(new Date(DateUtil.getCurrentDate().getTime()));
 		mnt.setData(myBlobServiceImpl.saveBlobLink(blobLinkme));
 		return mnt;
 	}
